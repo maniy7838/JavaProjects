@@ -12,7 +12,11 @@ class MyComp implements Comparator<String>{
 		return bStr.compareTo(aStr);
 	}
 	
+	public static void main(String[] args) {
+		
+		MyComp m1 = new MyComp();
+		
+		System.out.println(m1.compare("a", "c"));
+	}
 }
-public class CompDemo {
 
-}
