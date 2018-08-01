@@ -1,11 +1,15 @@
 package com.deloitte.web.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ProcessRequestServlet
@@ -43,14 +47,25 @@ public class ProcessRequestServlet extends HttpServlet {
 
 		UserBean userBean = new UserBean();
 
-		boolean status = userBean.authenticate(username, password);
+		try {
+			boolean status = userBean.authenticate(username, password);
 
-		if (status) {
-			request.setAttribute("ub", userBean);
-			request.getRequestDispatcher("homeVSHVDHS54543.jsp").forward(request, response);
-		} else {
+			if (status) {
+				HttpSession session = request.getSession();
+				
+				session.setAttribute("ub", userBean);
+				session.setMaxInactiveInterval(5);
+				request.getRequestDispatcher("homeVSHVDHS54543.jsp").forward(request, response);
+			} else {
 
-			request.getRequestDispatcher("loginJHDJH21545.jsp?flag=true").forward(request, response);
+				request.getRequestDispatcher("loginJHDJH21545.jsp?flag=true").forward(request, response);
+			}
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

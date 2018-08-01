@@ -9,9 +9,7 @@
 </head>
 <body>
 	Welcome
-	<c:out
-		value="${requestScope.ub.firstName } ${requestScope.ub.lastName } "></c:out>
-		<br>
+	<br/>
 	<iframe width="20%" height="100%" src="tocjbdjbs54324.jsp"></iframe>	
 	<iframe width="75%" height="100%" name="content"></iframe>	
 	
