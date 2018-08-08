@@ -13,21 +13,17 @@ import com.deloitte.pojos.Product;
 
 public class ProductDao implements Dao<Product>{
 
-	private static SessionFactory factory;
-	public static void main(String[] args) {
+
+	private SessionFactory factory;
+
+	public void getConnection() {
+
 		try {
 			factory = new Configuration().configure().buildSessionFactory();
 		} catch (Throwable ex) {
 			System.err.println("Failed to create sessionFactory object." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
-
-		Product P1 = new Product("gth",1000);
-
-		ProductDao PD = new ProductDao(); 
-		/* Add few employee records in database */
-		PD.save(P1);
-		PD.getAll();
 
 	}
 	@Override
@@ -46,10 +42,10 @@ public class ProductDao implements Dao<Product>{
 			tx = session.beginTransaction();
 			List product = session.createQuery("FROM Product").list();
 			for (Iterator iterator = product.iterator(); iterator.hasNext();) {
-				Product employee = (Product) iterator.next();
-				System.out.println("  ID: " + employee.getId());
-				System.out.print("Product Name: " + employee.getProductName());
-				System.out.print("  price: " + employee.getPrice());
+				Product product1 = (Product) iterator.next();
+				System.out.println("  ID: " + product1.getId());
+				System.out.print("Product Name: " + product1.getProductName());
+				System.out.print("  price: " + product1.getPrice());
 			}
 			tx.commit();
 		} catch (HibernateException e) {
