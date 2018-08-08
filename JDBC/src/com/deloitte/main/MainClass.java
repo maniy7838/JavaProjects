@@ -8,9 +8,17 @@ public class MainClass {
 	public static void main(String[] args) {
 		
 		UserDao udao = new UserDao();
-		User user = new User(1,"Mani","Mani","Yadav","pass*12","E");
+		User user = new User(2,"Avijit","Avijit","Verma","pass*11","E");
 
 		udao.save(user);
+		
+		//udao.getAll();
+		
+		//udao.delete(user);
+		
+		// User user1 = new User(2,"Avijit","Avijit","Verma","pass*11","E");
+		 
+		// udao.save(user1);
 	}
 
 }
